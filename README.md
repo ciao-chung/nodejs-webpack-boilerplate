@@ -8,6 +8,13 @@
 
 - ES6/ES7 supported
 
+## The Load Priority of import/require
+
+When import/require a js or json file in development, it will load according to priority.
+
+1. **App/Src**
+1. **node_modules**
+
 ## Global Variables/Functions
 
 ### log

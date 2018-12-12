@@ -38,7 +38,15 @@ module.exports = () => {
           `rm -rf ${outputPath}/*`,
         ],
       }),
-      new UglifyJsPlugin(),
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          compress: {
+            warnings: false
+          }
+        },
+        sourceMap: true,
+        parallel: true
+      }),
     ],
   }
 }

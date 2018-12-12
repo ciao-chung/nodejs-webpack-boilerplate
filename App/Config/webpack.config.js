@@ -11,7 +11,16 @@ module.exports = {
     path: outputPath,
     filename: 'app.js',
   },
-  devtool: 'eval-source-map',
+  resolve: {
+    extensions: ['.js', '.json'],
+    modules: [
+      resolve('Src'),
+      'node_modules',
+    ],
+    alias: {
+      'Src': resolve('Src'),
+    },
+  },
   module: {
     rules: [
       {

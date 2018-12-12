@@ -1,0 +1,23 @@
+{
+  "name": "nodejs-webpack",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Ciao Chung <ciao0958@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "node Runner/Dev.js; node Dist/app.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "babel-loader": "^8.0.4",
+    "babel-polyfill": "^6.26.0",
+    "ora": "^3.0.0",
+    "webpack": "3.11.0",
+    "webpack-shell-plugin": "^0.5.0"
+  },
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "yargs-parser": "^11.1.1"
+  }
+}

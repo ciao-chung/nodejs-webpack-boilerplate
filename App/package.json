@@ -13,6 +13,7 @@
     "babel-loader": "^8.0.4",
     "babel-polyfill": "^6.26.0",
     "ora": "^3.0.0",
+    "uglifyjs-webpack-plugin": "1.2.7",
     "webpack": "3.11.0",
     "webpack-shell-plugin": "^0.5.0"
   },

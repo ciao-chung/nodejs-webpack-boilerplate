@@ -7,6 +7,7 @@ class App {
 
   async start() {
     log('app start')
+    log(args, 'green')
   }
 }
 

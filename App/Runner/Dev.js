@@ -1,11 +1,34 @@
-const config = require('../Config/webpack.config')
+const asyncWebpackConfig = require('../Config/webpack.config')
 const webpack = require('webpack')
-const ora = require('ora')
-const spinner = ora('Start Build App')
-spinner.start()
+const spinner = require('ora')('Start Build App')
+const { resolve } = require('path')
 
-webpack(config, (err, stats) => {
-  console.log('done')
-  if (err) throw err
-  spinner.stop()
-})
+class Dev {
+  constructor() {
+    this.start()
+  }
+
+  async start() {
+    this.setupEnvVariable()
+    this.startWebpack()
+  }
+
+  setupEnvVariable() {
+    global.pathResolve = resolve
+    global.projectRoot = pathResolve(__dirname, '../../')
+    global.appRoot = pathResolve(projectRoot, 'App')
+    global.outputPath = pathResolve(appRoot, 'Dist')
+  }
+
+  startWebpack() {
+    spinner.start()
+
+    webpack(asyncWebpackConfig(), (err, stats) => {
+      console.log('done')
+      if (err) throw err
+      spinner.stop()
+    })
+  }
+}
+
+module.exports = new Dev()

@@ -18,8 +18,8 @@ Display a colorful log in console.
 
 **Arguments**
 
-- content(required): Any(Object, Array, String, Boolean), text to show.
-- style(optional): String, log style, this following is all style(default is cyan).
+- 1st argument(required): Any(Object, Array, String, Boolean), text to show.
+- 2nd argument(optional): String, log style, this following is all style(default is cyan).
   - white
   - red
   - green

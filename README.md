@@ -10,7 +10,7 @@
 
 ## Global Variables/Functions
 
-### log(function)
+### log
 
 > Function
 

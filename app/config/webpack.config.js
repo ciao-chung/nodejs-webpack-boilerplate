@@ -1,22 +1,21 @@
-const WebpackShellPlugin = require('webpack-shell-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = () => {
   return {
     target: 'node',
-    entry: ['babel-polyfill', pathResolve(appRoot, 'Src/App.js')],
+    entry: ['babel-polyfill', pathResolve(appRoot, 'src/App.js')],
     output: {
       path: outputPath,
-      filename: 'app.js',
+      filename: `${projectConfig.name}/app.js`,
     },
     resolve: {
       extensions: ['.js', '.json'],
       modules: [
-        pathResolve('Src'),
+        pathResolve('src'),
         'node_modules',
       ],
       alias: {
-        'Src': pathResolve('Src'),
+        'src': pathResolve('src'),
       },
     },
     module: {
@@ -33,11 +32,6 @@ module.exports = () => {
       ],
     },
     plugins: [
-      new WebpackShellPlugin({
-        onBuildEnd: [
-          `rm -rf ${outputPath}/*`,
-        ],
-      }),
       new UglifyJsPlugin({
         uglifyOptions: {
           compress: {

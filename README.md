@@ -12,7 +12,7 @@
 
 When import/require a js or json file in development, it will load according to priority.
 
-1. **App/Src**
+1. **app/src**
 1. **node_modules**
 
 ## Global Variables/Functions
@@ -68,3 +68,17 @@ Your args variable will be like this
   "foo": "bar"
 }
 ```
+
+## Production
+
+With production script, it will build app and copy app to **prod** directory.
+
+```bash
+yarn prod
+```
+
+**Auto Copy File**
+
+You can put any file which you wanna copy to **prod** directory to **app/copyfile** directory.
+
+After app built, it will auto copy all files under **app/copyfile** to **prod** directory.

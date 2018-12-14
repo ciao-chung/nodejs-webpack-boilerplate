@@ -5,6 +5,8 @@
   "author": "Ciao Chung <ciao0958@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "unit": "node node_modules/mocha/bin/mocha --require @babel/register test/unit/**/*.js",
+    "unit:single": "node node_modules/mocha/bin/mocha --require @babel/register",
     "dev": "node runner/dev.js; node dist/**/app.js",
     "start": "node dist/**/app.js",
     "prod": "node runner/dev.js --prod"
@@ -12,8 +14,10 @@
   "devDependencies": {
     "@babel/core": "^7.2.0",
     "@babel/preset-env": "^7.2.0",
+    "@babel/register": "^7.0.0",
     "babel-loader": "^8.0.4",
     "babel-polyfill": "^6.26.0",
+    "mocha": "^5.2.0",
     "ora": "^3.0.0",
     "shelljs": "^0.8.3",
     "uglifyjs-webpack-plugin": "1.2.7",

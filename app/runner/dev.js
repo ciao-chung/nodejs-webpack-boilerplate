@@ -9,6 +9,9 @@ class dev {
   }
 
   async start() {
+    this.seconds = 0
+    clearInterval(this.interval)
+    this.interval = setInterval(() => this.seconds++, 1000)
     await this.build()
   }
 
@@ -21,6 +24,9 @@ class dev {
     if(args.prod == true) {
       await this.production()
     }
+
+    log(`Spent ${this.seconds} seconds`, 'green')
+    clearInterval(this.interval)
   }
 
   async production() {

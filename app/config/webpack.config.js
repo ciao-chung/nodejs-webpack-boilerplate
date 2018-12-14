@@ -1,5 +1,4 @@
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-
+require('../src/Global')
 module.exports = () => {
   return {
     target: 'node',
@@ -31,16 +30,6 @@ module.exports = () => {
         },
       ],
     },
-    plugins: [
-      new UglifyJsPlugin({
-        uglifyOptions: {
-          compress: {
-            warnings: false
-          }
-        },
-        sourceMap: true,
-        parallel: true
-      }),
-    ],
+    plugins: [],
   }
 }

@@ -1,6 +1,4 @@
-import 'babel-polyfill'
 import assert from 'assert'
-import '../../../src/Global.js'
 describe('Global', () => {
   describe('Test now', () => {
     it('Test now format', () => {

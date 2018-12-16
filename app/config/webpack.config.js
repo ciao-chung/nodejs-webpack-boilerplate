@@ -10,6 +10,7 @@ module.exports = () => {
     resolve: {
       extensions: ['.js', '.json'],
       modules: [
+        appRoot,
         pathResolve('src'),
         'node_modules',
       ],

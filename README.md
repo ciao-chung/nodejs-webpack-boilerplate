@@ -42,18 +42,6 @@ log('foobar')
 log('foobar', 'green')
 ```
 
-### notify
-
-> Function
-
-Pass message to show system notification.
-
-**Example**
-
-```javascript
-notify('foobar')
-```
-
 ### now
 
 > Function

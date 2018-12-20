@@ -1,4 +1,5 @@
 require('../src/Global')
+const { existsSync } = require('fs')
 const asyncWebpackConfig = require('../config/webpack.config')
 const webpack = require('webpack')
 const spinner = require('ora')('Start Build App')
@@ -17,7 +18,11 @@ class dev {
 
   async build() {
     notify('Start Build App')
-    await execAsync(`rm -rf ./*`, { cwd: outputPath })
+
+    if(existsSync(outputPath)) {
+      await execAsync(`rm -rf ./*`, { cwd: outputPath })
+    }
+
     spinner.start()
     await this.webpackBuild()
 

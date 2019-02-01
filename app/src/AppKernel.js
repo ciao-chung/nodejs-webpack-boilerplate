@@ -8,7 +8,7 @@ class AppKernel {
     this.setup()
     log('app start')
     this.error = []
-    this.commands = []
+    this.commands = {}
     this.commandList.forEach(command => {
       command.setupCommand()
       this.commands[command.name] = command
@@ -22,9 +22,14 @@ class AppKernel {
   validate() {
     const command = this.commands[args.command]
     if(!command) {
-      log(`Command ${args.command} not found.`, 'red')
+      log(`Command not found.`, 'red')
+      this._showAllCommands()
       process.exit()
+      return
     }
+
+    // show command help
+    if(this._isHelpMode()) return this._showCommandHelp(command)
 
     const self = this
     command.argsConfig.forEach(argConfig => {
@@ -86,6 +91,35 @@ class AppKernel {
 
     if(value) return value
     return defaultValue
+  }
+
+  _isHelpMode() {
+    if(!!args.h) return true
+    if(!!args.help) return true
+    return false
+  }
+
+  _showAllCommands() {
+    let result = 'Command List\n'
+    for(const index in this.commands) {
+      const command = this.commands[index]
+      result += `${command.name} \t\t\t ${command.description}\n\n`
+    }
+    log(result)
+  }
+
+  _showCommandHelp(command) {
+    log(`Command: ${command.name}`, 'yellow')
+    log(`Description: ${command.description}`, 'yellow')
+    for(const argConfig of command.argsConfig) {
+      let result = ``
+      const requiredMessage = argConfig.required == true ? '/required' : ''
+      const type = !argConfig.type ? 'string' : argConfig.type
+      result += `[${argConfig.name}]\t\t ${type}${requiredMessage}\t\t`
+      log(result)
+      log(`${argConfig.description} \n${'-'.repeat(40)}`)
+    }
+    process.exit()
   }
 }
 

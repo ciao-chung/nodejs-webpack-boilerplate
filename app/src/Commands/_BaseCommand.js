@@ -8,6 +8,7 @@ class _BaseCommand {
    */
   async _init() {
     this.name = ''
+    this.configFile = null
     this.options = []
     this.args = {}
     this.argsConfig = []

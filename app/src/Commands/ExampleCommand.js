@@ -2,10 +2,13 @@ import BaseCommand from 'Commands/_BaseCommand'
 class ExampleCommand extends BaseCommand{
   async setupCommand() {
     this.name = 'example'
+    this.configFile = {
+      property: 'config',
+    }
+
     this.argsConfig = [
       {
         name: 'arg_string',
-        required: true,
         description: 'A string argument',
         defaultValue: 'foobar',
       },
@@ -32,7 +35,11 @@ class ExampleCommand extends BaseCommand{
 
   async start() {
     log('Start example command.', 'green')
+    log(`[Arguments]`)
     console.log(this.args)
+
+    log(`[Command Config]`)
+    console.log(this.commandConfig)
   }
 }
 

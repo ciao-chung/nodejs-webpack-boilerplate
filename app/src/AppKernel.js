@@ -1,4 +1,7 @@
 import 'Global'
+import jsYaml from 'js-yaml'
+import { extname, resolve } from 'path'
+import { readFileSync } from 'fs'
 class AppKernel {
   async setup() {
     this.commandList = []
@@ -29,7 +32,14 @@ class AppKernel {
     }
 
     // show command help
-    if(this._isHelpMode()) return this._showCommandHelp(command)
+    if(this._isHelpMode()) {
+      return this._showCommandHelp(command)
+    }
+
+    // setup config file
+    if(command.configFile) {
+      this._setupConfigFile(command)
+    }
 
     const self = this
     command.argsConfig.forEach(argConfig => {
@@ -41,6 +51,30 @@ class AppKernel {
     this.error.forEach(error => errorMessage += `${error.error}\n`)
     log(errorMessage, 'red')
     process.exit()
+  }
+
+  _setupConfigFile(command) {
+    if(typeof command.configFile != 'object') return
+    const configArgName = command.configFile.property || 'config'
+    const configFilePath = resolve(args[configArgName])
+    const configFileType = extname(configFilePath)
+    if(configFileType != '.json' && configFileType != '.yml') {
+      log(`Config file only support json/yaml format`, 'red')
+      process.exit()
+    }
+
+    let configFileContent = ''
+    try {
+      configFileContent = readFileSync(configFilePath, 'utf8')
+      configFileContent = configFileType == '.json'
+          ? JSON.parse(configFileContent)
+          : jsYaml.safeLoad(configFileContent)
+    } catch (error) {
+      log(error, 'red')
+      process.exit()
+    }
+
+    command.commandConfig = configFileContent
   }
 
   _validateArg(command, argConfig) {

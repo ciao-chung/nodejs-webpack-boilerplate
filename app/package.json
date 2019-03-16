@@ -4,6 +4,7 @@
   "main": "index.js",
   "author": "Ciao Chung <ciao0958@gmail.com>",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "unit": "node node_modules/mocha-webpack/bin/mocha-webpack test/unit/**/*.js --webpack-config config/webpack.test.config.js",
     "unit:single": "node node_modules/mocha-webpack/bin/mocha-webpack --webpack-config config/webpack.test.config.js",
